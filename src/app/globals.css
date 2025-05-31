@@ -1,5 +1,7 @@
 @import 'tailwindcss';
-@layer base {
+@import 'tw-animate-css';
+
+layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -26,6 +28,11 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    /* Font variables */
+    --font-inter: 'Inter', sans-serif;
+    --font-space-grotesk: 'Space Grotesk', sans-serif;
+    --font-jetbrains-mono: 'JetBrains Mono', monospace;
   }
 
   .dark {
@@ -58,11 +65,118 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
+
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-inter);
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
   }
+
+  /* Neo-brutalism typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-space-grotesk);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+
+  /* Code and tech elements */
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-jetbrains-mono);
+  }
+}
+
+/* Custom font classes */
+.font-heading {
+  font-family: var(--font-space-grotesk) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.1 !important;
+}
+
+.font-body {
+  font-family: var(--font-inter) !important;
+  font-weight: 400 !important;
+}
+
+.font-mono {
+  font-family: var(--font-jetbrains-mono) !important;
+}
+
+/* Neo-brutalism specific font weights */
+.font-black {
+  font-weight: 900 !important;
+}
+
+.font-bold {
+  font-weight: 700 !important;
+}
+
+.font-semibold {
+  font-weight: 600 !important;
+}
+
+.font-medium {
+  font-weight: 500 !important;
+}
+
+/* Text sizes with proper line heights for neo-brutalism */
+.text-8xl {
+  font-size: 6rem !important;
+  line-height: 1 !important;
+  letter-spacing: -0.05em !important;
+}
+
+.text-6xl {
+  font-size: 3.75rem !important;
+  line-height: 1 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.text-5xl {
+  font-size: 3rem !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.text-4xl {
+  font-size: 2.25rem !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.text-3xl {
+  font-size: 1.875rem !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.text-2xl {
+  font-size: 1.5rem !important;
+  line-height: 1.3 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.text-xl {
+  font-size: 1.25rem !important;
+  line-height: 1.4 !important;
+}
+
+.text-lg {
+  font-size: 1.125rem !important;
+  line-height: 1.5 !important;
 }
 
 /* Custom animations */
@@ -118,6 +232,125 @@
 
 .animate-glitch {
   animation: glitch 0.3s ease-in-out infinite;
+}
+
+/* Button Click Animation - Neo Brutalism Style */
+@keyframes buttonPress {
+  0% {
+    transform: translate(0, 0);
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  }
+  50% {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  }
+  100% {
+    transform: translate(0, 0);
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  }
+}
+
+@keyframes buttonPressLarge {
+  0% {
+    transform: translate(0, 0);
+    box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  }
+  50% {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+  }
+  100% {
+    transform: translate(0, 0);
+    box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  }
+}
+
+@keyframes buttonPressXL {
+  0% {
+    transform: translate(0, 0);
+    box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  }
+  50% {
+    transform: translate(4px, 4px);
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  }
+  100% {
+    transform: translate(0, 0);
+    box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  }
+}
+
+/* Button Press Classes */
+.btn-press {
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-press:active {
+  animation: buttonPress 0.15s ease-in-out;
+}
+
+.btn-press-lg:active {
+  animation: buttonPressLarge 0.15s ease-in-out;
+}
+
+.btn-press-xl:active {
+  animation: buttonPressXL 0.15s ease-in-out;
+}
+
+/* Alternative click effect - immediate press */
+.btn-press-instant:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+.btn-press-instant-lg:active {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+.btn-press-instant-xl:active {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+/* Ripple effect for additional feedback */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.btn-ripple:active::before {
+  width: 300px;
+  height: 300px;
+  animation: ripple 0.6s ease-out;
 }
 
 /* Scroll animations */
@@ -208,4 +441,205 @@
 
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #f59e0b;
+}
+
+/* Ensure important styles are applied */
+.bg-yellow-50 {
+  background-color: #fefce8 !important;
+}
+
+.bg-cyan-300 {
+  background-color: #67e8f9 !important;
+}
+
+.bg-cyan-400 {
+  background-color: #22d3ee !important;
+}
+
+.bg-pink-400 {
+  background-color: #f472b6 !important;
+}
+
+.bg-yellow-400 {
+  background-color: #facc15 !important;
+}
+
+.bg-green-400 {
+  background-color: #4ade80 !important;
+}
+
+.bg-purple-400 {
+  background-color: #c084fc !important;
+}
+
+.bg-red-400 {
+  background-color: #f87171 !important;
+}
+
+.bg-blue-400 {
+  background-color: #60a5fa !important;
+}
+
+.bg-gray-900 {
+  background-color: #111827 !important;
+}
+
+.bg-gray-800 {
+  background-color: #1f2937 !important;
+}
+
+.bg-white {
+  background-color: #ffffff !important;
+}
+
+.text-black {
+  color: #000000 !important;
+}
+
+.text-white {
+  color: #ffffff !important;
+}
+
+.text-pink-600 {
+  color: #db2777 !important;
+}
+
+.text-yellow-400 {
+  color: #facc15 !important;
+}
+
+.text-cyan-400 {
+  color: #22d3ee !important;
+}
+
+.text-purple-600 {
+  color: #9333ea !important;
+}
+
+.text-green-600 {
+  color: #16a34a !important;
+}
+
+.text-blue-600 {
+  color: #2563eb !important;
+}
+
+.text-red-600 {
+  color: #dc2626 !important;
+}
+
+.border-black {
+  border-color: #000000 !important;
+}
+
+.border-4 {
+  border-width: 4px !important;
+}
+
+/* Shadow utilities */
+.shadow-4px_4px_0px_0px_rgba_0_0_0_1 {
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+.shadow-6px_6px_0px_0px_rgba_0_0_0_1 {
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+.shadow-8px_8px_0px_0px_rgba_0_0_0_1 {
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+.shadow-10px_10px_0px_0px_rgba_0_0_0_1 {
+  box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+.shadow-12px_12px_0px_0px_rgba_0_0_0_1 {
+  box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+/* Hover effects */
+.hover-shadow-6px_6px_0px_0px_rgba_0_0_0_1:hover {
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+.hover-shadow-10px_10px_0px_0px_rgba_0_0_0_1:hover {
+  box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+.hover-shadow-12px_12px_0px_0px_rgba_0_0_0_1:hover {
+  box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+/* Transform utilities */
+.hover-scale-105:hover {
+  transform: scale(1.05) !important;
+}
+
+.hover-scale-110:hover {
+  transform: scale(1.1) !important;
+}
+
+.hover-rotate-1:hover {
+  transform: rotate(1deg) !important;
+}
+
+.hover--rotate-1:hover {
+  transform: rotate(-1deg) !important;
+}
+
+.hover-rotate-12:hover {
+  transform: rotate(12deg) !important;
+}
+
+/* Transition utilities */
+.transition-all {
+  transition-property: all !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.duration-300 {
+  transition-duration: 300ms !important;
+}
+
+.duration-500 {
+  transition-duration: 500ms !important;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms !important;
+}
+
+/* Backdrop blur */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px) !important;
+}
+
+/* Fixed positioning */
+.fixed {
+  position: fixed !important;
+}
+
+.relative {
+  position: relative !important;
+}
+
+.absolute {
+  position: absolute !important;
+}
+
+/* Z-index */
+.z-0 {
+  z-index: 0 !important;
+}
+
+.z-10 {
+  z-index: 10 !important;
+}
+
+.z-40 {
+  z-index: 40 !important;
+}
+
+.z-50 {
+  z-index: 50 !important;
 }

@@ -1,0 +1,6 @@
+export const roles = [
+  'FULL STACK DEVELOPER',
+  'MACHINE LEARNING ENGINEER',
+  'SOFTWARE DEVELOPER',
+  'AI ENTHUSIAST',
+];
