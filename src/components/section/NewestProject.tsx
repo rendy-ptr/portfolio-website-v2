@@ -2,13 +2,13 @@
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import { ExternalLink, ArrowRight } from 'lucide-react';
-import { featuredProjects } from '@/mocks/FeaturedProjects';
+import { newestProjects } from '@/mocks/NewestProjects';
 
-type FeaturedProjectsProps = {
+type NewestProjectsProps = {
   darkMode: boolean;
 };
 
-const FeaturedProjects = ({ darkMode }: FeaturedProjectsProps) => {
+const NewestProjects = ({ darkMode }: NewestProjectsProps) => {
   return (
     <section id="projects" className="relative px-4 py-16">
       <div className="relative z-10 mx-auto max-w-6xl">
@@ -17,10 +17,10 @@ const FeaturedProjects = ({ darkMode }: FeaturedProjectsProps) => {
             darkMode ? 'text-green-400' : 'text-blue-600'
           }`}
         >
-          FEATURED PROJECTS
+          NEWEST PROJECTS
         </h2>
         <div className="mb-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featuredProjects.map((project, index) => (
+          {newestProjects.map((project, index) => (
             <div
               key={index}
               className={`group border-4 border-black p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-500 hover:scale-105 hover:rotate-1 hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] ${
@@ -29,7 +29,7 @@ const FeaturedProjects = ({ darkMode }: FeaturedProjectsProps) => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div
-                className={`mb-4 h-32 w-full overflow-hidden border-4 border-black transition-all duration-300 group-hover:scale-105`}
+                className={`mb-4 h-40 w-full overflow-hidden border-4 border-black transition-all duration-300 group-hover:scale-105`}
               >
                 {project.image ? (
                   <img
@@ -64,7 +64,7 @@ const FeaturedProjects = ({ darkMode }: FeaturedProjectsProps) => {
                 className="btn-press border-4 border-black bg-pink-400 font-bold text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:scale-105 hover:bg-pink-300 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
               >
                 <a
-                  href={project.link}
+                  href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center"
@@ -91,4 +91,4 @@ const FeaturedProjects = ({ darkMode }: FeaturedProjectsProps) => {
   );
 };
 
-export default FeaturedProjects;
+export default NewestProjects;

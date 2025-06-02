@@ -120,7 +120,7 @@ const Contact = ({ darkMode }: ContactProps) => {
             </div>
             <Button
               type="submit"
-              className="btn-press-lg border-4 border-black bg-green-400 px-8 py-4 text-lg font-bold text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:scale-105 hover:bg-green-300 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+              className="btn-press-lg cursor-pointer border-4 border-black bg-green-400 px-8 py-4 text-lg font-bold text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:scale-105 hover:bg-green-300 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
             >
               <Send className="mr-2 h-5 w-5" />
               KIRIM PESAN
