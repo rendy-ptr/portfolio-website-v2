@@ -10,10 +10,12 @@ import Loading from '@/components/shared/Loading';
 import AnimatedBackground from '@/components/shared/AnimatedBackground';
 import MouseFollower from '@/components/shared/MouseFollower';
 import Navbar from '@/components/shared/Navbar';
+import type { ProjectCategoryTypes } from '@/types/projectcategories';
 
 export default function ProjectsPage() {
   const [isClient, setIsClient] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] =
+    useState<ProjectCategoryTypes>('All');
   const [darkMode, setDarkMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 

@@ -1,8 +1,9 @@
 import { ProjectType, AllProjectsType } from '@/types/allprojects';
 import { PROJECT_CATEGORIES } from '@/constants/ProjectsCategories';
+import { ProjectCategoryTypes } from '@/types/projectcategories';
 
 export const filterProjects = (
-  selectedCategory: string,
+  selectedCategory: ProjectCategoryTypes,
   projects: AllProjectsType
 ): AllProjectsType => {
   // Validasi category jika tidak ada yang dipilih kembalikan semua project

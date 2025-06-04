@@ -2,6 +2,7 @@
 import { Bot, User, Send, X, BotMessageSquare } from 'lucide-react';
 import { Input } from '../ui/input';
 import React, { useEffect, useRef, useState } from 'react';
+import Linkify from 'react-linkify';
 import { initialChatMessages } from '@/mocks/ChatMessages';
 
 type ChatBotProps = {
@@ -15,7 +16,6 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
   const [chatMessage, setChatMessage] = useState('');
   const [chatMessages, setChatMessages] = useState(initialChatMessages);
 
-  // Auto scroll chat to bottom
   useEffect(() => {
     if (chatbotOpen) {
       setTimeout(() => {
@@ -28,57 +28,60 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
 
   const handleChatbotToggle = () => {
     setChatbotOpen(!chatbotOpen);
-    // console.log('Chatbot toggled:', !chatbotOpen);
   };
 
-  const simulateBotResponse = (userMessage: string) => {
+  const simulateBotResponse = async (userMessage: string) => {
     setIsTyping(true);
 
-    setTimeout(() => {
-      let botResponse = '';
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userMessage }),
+      });
 
-      // Simple AI responses based on keywords
-      const message = userMessage.toLowerCase();
-      if (message.includes('skill') || message.includes('teknologi')) {
-        botResponse =
-          'Rendy menguasai berbagai teknologi modern seperti JavaScript, TypeScript, React, Next.js, Node.js, Python, dan database seperti MongoDB & PostgreSQL. Skill level rata-rata 85%+ dengan pengalaman 4+ tahun!';
-      } else if (message.includes('project') || message.includes('portfolio')) {
-        botResponse =
-          'Rendy telah menyelesaikan 50+ project termasuk E-Commerce Platform, Task Management App, Weather Dashboard, dan masih banyak lagi. Setiap project menggunakan teknologi terdepan dan best practices!';
-      } else if (message.includes('pengalaman') || message.includes('kerja')) {
-        botResponse =
-          'Rendy memiliki 4+ tahun pengalaman sebagai Full Stack Developer, mulai dari Junior Developer di Software House, Full Stack Developer di Digital Agency, hingga Senior Frontend Developer di Tech Startup.';
-      } else if (message.includes('kontak') || message.includes('hubungi')) {
-        botResponse =
-          'Anda bisa menghubungi Rendy melalui form kontak di bawah, email, LinkedIn, atau GitHub. Rendy selalu terbuka untuk diskusi project baru dan kolaborasi!';
-      } else if (
-        message.includes('halo') ||
-        message.includes('hai') ||
-        message.includes('hello')
-      ) {
-        botResponse =
-          'Halo juga! 👋 Senang bertemu dengan Anda! Saya siap membantu menjawab pertanyaan tentang Rendy dan portfolionya. Ada yang ingin Anda ketahui?';
-      } else {
-        botResponse =
-          'Terima kasih atas pertanyaannya! Saya bisa membantu Anda dengan informasi tentang skills, pengalaman, project, atau cara menghubungi Rendy. Silakan tanyakan lebih spesifik! 😊';
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`API error: ${response.status} ${errorText}`);
       }
 
-      const newBotMessage = {
-        id: Date.now(),
-        text: botResponse,
-        sender: 'bot' as const,
-        timestamp: new Date(),
-      };
+      const data = await response.json();
 
-      setChatMessages(prev => [...prev, newBotMessage]);
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      setTimeout(() => {
+        const newBotMessage = {
+          id: Date.now(),
+          text: data.reply,
+          sender: 'bot' as const,
+          timestamp: new Date(),
+        };
+
+        setChatMessages(prev => [...prev, newBotMessage]);
+        setIsTyping(false);
+      }, 2000);
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      console.error('Error in simulateBotResponse:', errorMessage);
+      setChatMessages(prev => [
+        ...prev,
+        {
+          id: Date.now(),
+          text: `Maaf, ada masalah: ${errorMessage}. Coba lagi nanti!`,
+          sender: 'bot' as const,
+          timestamp: new Date(),
+        },
+      ]);
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (chatMessage.trim()) {
-      // Add user message
       const userMessage = {
         id: Date.now(),
         text: chatMessage.trim(),
@@ -89,7 +92,6 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
       setChatMessages(prev => [...prev, userMessage]);
       setChatMessage('');
 
-      // Simulate bot response
       simulateBotResponse(chatMessage.trim());
     }
   };
@@ -97,7 +99,6 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
   return (
     <div className="fixed right-6 bottom-6 z-50">
       <div className="relative">
-        {/* Pulse Ring Animation */}
         <div
           className={`absolute inset-0 h-16 w-16 animate-ping rounded-full border-4 ${
             darkMode ? 'border-yellow-400' : 'border-pink-400'
@@ -106,7 +107,6 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
         ></div>
 
         <div className="group relative">
-          {/* Chatbot Button */}
           <button
             onClick={handleChatbotToggle}
             className={`btn-press-lg relative flex h-16 w-16 animate-bounce cursor-pointer items-center justify-center rounded-full border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:scale-110 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] ${
@@ -123,9 +123,10 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
             )}
           </button>
 
-          {/* Tooltip */}
           <div
-            className={`absolute right-0 bottom-full mb-2 hidden border-4 border-black px-3 py-2 text-sm font-bold whitespace-nowrap shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:block ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'} `}
+            className={`absolute right-0 bottom-full mb-2 hidden border-4 border-black px-3 py-2 text-sm font-bold whitespace-nowrap shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:block ${
+              darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'
+            }`}
           >
             {chatbotOpen ? 'Tutup Chat AI' : 'Chat dengan AI Assistant'}
             <div
@@ -136,14 +137,12 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
           </div>
         </div>
 
-        {/* IMPROVED: Chat Interface */}
         {chatbotOpen && (
           <div
             className={`animate-slide-in-up absolute right-0 bottom-full mb-20 flex h-[500px] w-96 flex-col border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 ${
               darkMode ? 'bg-gray-800' : 'bg-white'
             }`}
           >
-            {/* Chat Header */}
             <div
               className={`flex items-center gap-3 border-b-4 border-black p-4 ${
                 darkMode ? 'bg-cyan-400' : 'bg-pink-400'
@@ -154,13 +153,12 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-black">
-                  AI Assistant Rendy
+                  AI Assistant RendyBot
                 </h3>
                 <p className="text-sm text-black">🟢 Online - Siap membantu!</p>
               </div>
             </div>
 
-            {/* Chat Messages */}
             <div className="flex-1 space-y-3 overflow-y-auto p-4">
               {chatMessages.map(message => (
                 <div
@@ -186,8 +184,29 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
                         <User className="mt-1 h-4 w-4 flex-shrink-0 text-pink-600" />
                       )}
                       <div className="flex-1">
-                        <p className="text-sm leading-relaxed whitespace-pre-line">
-                          {message.text}
+                        <p
+                          className="text-sm leading-relaxed break-words whitespace-pre-wrap"
+                          style={{ maxWidth: '100%', wordBreak: 'break-word' }}
+                        >
+                          <Linkify
+                            componentDecorator={(
+                              decoratedHref,
+                              decoratedText,
+                              key
+                            ) => (
+                              <a
+                                href={decoratedHref}
+                                key={key}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-500 hover:underline"
+                              >
+                                {decoratedText}
+                              </a>
+                            )}
+                          >
+                            {message.text}
+                          </Linkify>
                         </p>
                         <p className="mt-1 text-xs opacity-70">
                           {message.timestamp.toLocaleTimeString('id-ID', {
@@ -201,7 +220,6 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
                 </div>
               ))}
 
-              {/* Typing Indicator */}
               {isTyping && (
                 <div className="flex justify-start">
                   <div
@@ -233,7 +251,6 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
               <div ref={chatEndRef} />
             </div>
 
-            {/* Chat Input */}
             <div className="border-t-4 border-black p-4">
               <form onSubmit={handleSendMessage} className="flex gap-2">
                 <Input
@@ -252,8 +269,8 @@ const ChatBot = ({ darkMode }: ChatBotProps) => {
                 </button>
               </form>
               <p className="mt-2 text-xs text-gray-500">
-                💡 Coba tanya: &quot;Apa saja skill Rendy?&quot; atau
-                &quot;Ceritakan tentang project-projectnya&quot;
+                💡 Coba tanya: &quot;Dimana rendy tinggal ?&quot; atau
+                &quot;Berapa umur rendy sekarang ?&quot;
               </p>
             </div>
           </div>

@@ -27,6 +27,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'Rendy Putra Pratama - Portfolio',
   description: 'Creative Developer & Full Stack Developer Portfolio',
+  icons: {
+    icon: '/tittle.ico',
+  },
 };
 
 export default function RootLayout({
