@@ -23,14 +23,25 @@ const About = ({ darkMode }: AboutProps) => {
             }`}
           >
             <p className="mb-6 text-xl leading-relaxed">
-              Saya adalah seorang full-stack developer dengan pengalaman di
-              industri 3 Bulan. Saya passionate dalam menciptakan solusi digital
-              yang tidak hanya fungsional tapi juga memberikan pengalaman
-              pengguna yang luar biasa.
+              Saya adalah mahasiswa semester akhir jurusan Teknik Informatika
+              dengan pengalaman magang selama 3 bulan sebagai programmer di
+              industri. Selama masa magang, saya terbiasa bekerja dalam tim
+              pengembang dan mengerjakan berbagai tantangan teknis, yang semakin
+              memperkuat minat saya di dunia teknologi.
+            </p>
+            <p className="mb-6 text-xl leading-relaxed">
+              Saya memiliki ketertarikan yang kuat pada bidang fullstack
+              developer, machine learning, dan data science. Bagi saya,
+              membangun solusi dari sisi front-end hingga back-end, serta
+              menggali wawasan dari data melalui analisis dan model pembelajaran
+              mesin, adalah hal yang sangat menarik dan menantang. Ketiga bidang
+              ini saling berkaitan dan memiliki peran penting dalam menghadapi
+              tantangan di era digital saat ini.
             </p>
             <p className="text-xl leading-relaxed">
-              Ketika tidak coding, saya suka eksplorasi teknologi baru, bermain
-              game, dan berbagi pengetahuan dengan komunitas developer.
+              Di luar aktivitas ngoding, saya senang mengeksplorasi teknologi
+              terbaru, bermain game, serta aktif berbagi pengetahuan dan
+              berdiskusi di komunitas developer.
             </p>
           </div>
           <div
