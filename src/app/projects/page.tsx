@@ -11,6 +11,7 @@ import AnimatedBackground from '@/components/shared/AnimatedBackground';
 import MouseFollower from '@/components/shared/MouseFollower';
 import Navbar from '@/components/shared/Navbar';
 import type { ProjectCategoryTypes } from '@/types/projectcategories';
+import Image from 'next/image';
 
 export default function ProjectsPage() {
   const [isClient, setIsClient] = useState(false);
@@ -148,7 +149,7 @@ export default function ProjectsPage() {
                     }`}
                   >
                     {project.image ? (
-                      <img
+                      <Image
                         src={project.image}
                         alt={`${project.title} preview`}
                         className="h-full w-full object-cover"

@@ -8,6 +8,9 @@ import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import globals from 'globals';
 
+// Import Next.js ESLint plugin
+import nextPlugin from '@next/eslint-plugin-next';
+
 // Import Next.js ESLint config (flat config compatible)
 import { FlatCompat } from '@eslint/eslintrc';
 import path from 'path';
@@ -41,6 +44,9 @@ export default [
   // Extend Next.js config using FlatCompat
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
 
+  // Explicitly add Next.js plugin
+  ...compat.extends('plugin:@next/next/recommended'),
+
   js.configs.recommended,
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
@@ -66,6 +72,7 @@ export default [
       'jsx-a11y': jsxA11yPlugin,
       prettier: prettierPlugin,
       '@typescript-eslint': tsEslintPlugin,
+      '@next/next': nextPlugin,
     },
     settings: {
       react: {
@@ -76,11 +83,15 @@ export default [
       },
     },
     rules: {
+      // Next.js recommended rules
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
+
       // Base rules
       ...reactPlugin.configs.recommended.rules,
       ...reactHooksPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
-      ...prettierConfig.rules,
+      ...prettierPlugin.configs.recommended.rules,
 
       // TypeScript rules
       '@typescript-eslint/no-unused-vars': [
@@ -101,8 +112,8 @@ export default [
       // General rules
       'no-unused-vars': 'off',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
-      eqeqeq: ['error', 'always'],
-      curly: 'error',
+      'eqeqeq': ['error', 'always'],
+      'curly': 'error',
       'no-duplicate-imports': 'error',
       'prefer-const': 'error',
 

@@ -3,6 +3,7 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import { newestProjects } from '@/mocks/NewestProjects';
+import Image from 'next/image';
 
 type NewestProjectsProps = {
   darkMode: boolean;
@@ -32,7 +33,7 @@ const NewestProjects = ({ darkMode }: NewestProjectsProps) => {
                 className={`mb-4 h-40 w-full overflow-hidden border-4 border-black transition-all duration-300 group-hover:scale-105`}
               >
                 {project.image ? (
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
                     className="h-full w-full object-cover"
