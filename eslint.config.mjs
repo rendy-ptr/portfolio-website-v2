@@ -7,7 +7,7 @@ import prettierConfig from 'eslint-config-prettier';
 import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import globals from 'globals';
-import nextPlugin from 'eslint-plugin-next';
+import nextConfig from 'eslint-config-next';
 
 export default [
   {
@@ -45,7 +45,6 @@ export default [
       'jsx-a11y': jsxA11yPlugin,
       prettier: prettierPlugin,
       '@typescript-eslint': tsEslintPlugin,
-      next: nextPlugin,
     },
     settings: {
       react: {
@@ -59,7 +58,7 @@ export default [
       ...jsxA11yPlugin.configs.recommended.rules,
       ...tsEslintPlugin.configs.recommended.rules,
       ...prettierConfig.rules,
-      ...nextPlugin.configs.recommended.rules,
+      ...nextConfig.rules,
       'prettier/prettier': ['error', {}, { usePrettierrc: true }],
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
