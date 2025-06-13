@@ -3,9 +3,23 @@ import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import prettierPlugin from 'eslint-plugin-prettier';
+import prettierConfig from 'eslint-config-prettier';
 import tsEslintPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import globals from 'globals';
+
+// Import Next.js ESLint config (flat config compatible)
+import { FlatCompat } from '@eslint/eslintrc';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+});
 
 export default [
   {
@@ -23,6 +37,10 @@ export default [
       '*.config.ts',
     ],
   },
+
+  // Extend Next.js config using FlatCompat
+  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+
   js.configs.recommended,
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
@@ -62,6 +80,7 @@ export default [
       ...reactPlugin.configs.recommended.rules,
       ...reactHooksPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
+      ...prettierConfig.rules,
 
       // TypeScript rules
       '@typescript-eslint/no-unused-vars': [
@@ -91,6 +110,7 @@ export default [
       'prettier/prettier': ['error', {}, { usePrettierrc: true }],
     },
   },
+
   // Override for config files
   {
     files: ['*.config.{js,mjs,ts}', 'tailwind.config.{js,ts}'],
