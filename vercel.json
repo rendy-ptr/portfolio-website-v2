@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "src": "/CV-RENDY.pdf",
+      "dest": "/CV-RENDY.pdf",
+      "headers": {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "attachment; filename=CV-RENDY.pdf"
+      }
+    }
+  ]
+}

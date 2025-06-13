@@ -1,8 +1,0 @@
-{
-  "routes": [
-    {
-      "src": "/CV-RENDY.PDF",
-      "dest": "/CV-RENDY.PDF"
-    }
-  ]
-}
