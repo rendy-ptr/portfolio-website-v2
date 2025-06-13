@@ -4,7 +4,7 @@ import { Star } from 'lucide-react';
 export const experiences = [
   {
     title: 'Internship as a Teknikal Programmer',
-    company: 'PT. Jidoka Systems Indonesia',
+    company: 'PT. Jidoka System Indonesia',
     period: 'March, 2023 - June, 2023',
     description:
       'Mengembangkan aplikasi ERP berbasis odoo menggunakan Python dan Xml ',

@@ -21,7 +21,7 @@ export const education = [
   {
     level: 'Universitas',
     school: 'Universitas Buana Perjuangan Karawang',
-    period: '2021 - sekarang',
+    period: '2021 - 2025',
     description:
       'S1 Teknik Informatika, fokus pada pengembangan perangkat lunak dan kecerdasan buatan',
   },
