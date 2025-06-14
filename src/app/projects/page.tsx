@@ -11,7 +11,6 @@ import AnimatedBackground from '@/components/shared/AnimatedBackground';
 import MouseFollower from '@/components/shared/MouseFollower';
 import Navbar from '@/components/shared/Navbar';
 import type { ProjectCategoryTypes } from '@/types/projectcategories';
-import Image from 'next/image';
 
 export default function ProjectsPage() {
   const [isClient, setIsClient] = useState(false);
@@ -144,16 +143,15 @@ export default function ProjectsPage() {
                 >
                   {/* Project Image/Color Block */}
                   <div
-                    className={`relative mb-4 flex h-40 w-full items-center justify-center border-4 border-black transition-all duration-300 group-hover:scale-105 ${
+                    className={`mb-4 flex h-40 w-full items-center justify-center border-4 border-black transition-all duration-300 group-hover:scale-105 ${
                       project.image ? '' : project.color
                     }`}
                   >
                     {project.image ? (
-                      <Image
+                      <img
                         src={project.image}
                         alt={`${project.title} preview`}
-                        fill
-                        className="object-cover"
+                        className="h-full w-full object-cover"
                       />
                     ) : (
                       <Code className="h-12 w-12 text-black opacity-50" />

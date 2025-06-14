@@ -1,9 +1,8 @@
 'use client';
-import { Button } from '../ui/button';
-import Link from 'next/link';
 import { ExternalLink, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import { newestProjects } from '@/mocks/NewestProjects';
-import Image from 'next/image';
 
 type NewestProjectsProps = {
   darkMode: boolean;
@@ -30,14 +29,13 @@ const NewestProjects = ({ darkMode }: NewestProjectsProps) => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div
-                className={`relative mb-4 h-40 w-full overflow-hidden border-4 border-black transition-all duration-300 group-hover:scale-105`}
+                className={`mb-4 h-40 w-full overflow-hidden border-4 border-black transition-all duration-300 group-hover:scale-105`}
               >
                 {project.image ? (
-                  <Image
+                  <img
                     src={project.image}
                     alt={project.title}
-                    fill
-                    className="object-cover"
+                    className="h-full w-full object-cover"
                   />
                 ) : (
                   <div className={`${project.color} h-full w-full`} />
