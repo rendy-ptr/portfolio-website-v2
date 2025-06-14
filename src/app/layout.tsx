@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   title: 'Rendy Putra Pratama - Portfolio',
   description: 'Creative Developer & Full Stack Developer Portfolio',
   icons: {
-    icon: '/title.ico',
+    icon: '/favicon.ico',
   },
 };
 
