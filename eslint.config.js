@@ -3,25 +3,43 @@ import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
 import reactHooks from 'eslint-plugin-react-hooks';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import typescriptParser from '@typescript-eslint/parser';
+import parser from '@typescript-eslint/parser';
 import prettier from 'eslint-plugin-prettier';
-import next from '@next/eslint-plugin-next';
+import pluginNext from '@next/eslint-plugin-next';
 import globals from 'globals';
 
 export default [
   // Konfigurasi dasar JavaScript
   js.configs.recommended,
 
-  // Environment global untuk semua file
+  // Konfigurasi Next.js (dari permintaan kamu)
   {
+    name: 'ESLint Config - nextjs',
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
+      parser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+        project: './tsconfig.json',
+      },
       globals: {
-        ...globals.browser,
+        ...globals.browser, 
         ...globals.node,
         es2021: true,
       },
+    },
+    plugins: {
+      '@next/next': pluginNext,
+    },
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+    rules: {
+      ...pluginNext.configs.recommended.rules,
+      ...pluginNext.configs['core-web-vitals'].rules,
+      '@next/next/no-html-link-for-pages': 'error',
+      '@next/next/no-sync-scripts': 'error',
     },
   },
 
@@ -63,7 +81,7 @@ export default [
       '@typescript-eslint': typescriptEslint,
     },
     languageOptions: {
-      parser: typescriptParser,
+      parser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -84,21 +102,9 @@ export default [
     },
   },
 
-  // Konfigurasi Next.js
-  {
-    plugins: {
-      '@next/next': next,
-    },
-    rules: {
-      ...next.configs.recommended.rules,
-      ...next.configs['core-web-vitals'].rules,
-      '@next/next/no-html-link-for-pages': 'error',
-      '@next/next/no-sync-scripts': 'error',
-    },
-  },
-
   // Konfigurasi Prettier
   {
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
     plugins: {
       prettier,
     },
