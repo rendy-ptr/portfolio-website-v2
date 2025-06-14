@@ -144,7 +144,7 @@ export default function ProjectsPage() {
                 >
                   {/* Project Image/Color Block */}
                   <div
-                    className={`mb-4 flex h-40 w-full items-center justify-center border-4 border-black transition-all duration-300 group-hover:scale-105 ${
+                    className={`relative mb-4 flex h-40 w-full items-center justify-center border-4 border-black transition-all duration-300 group-hover:scale-105 ${
                       project.image ? '' : project.color
                     }`}
                   >
@@ -152,7 +152,8 @@ export default function ProjectsPage() {
                       <Image
                         src={project.image}
                         alt={`${project.title} preview`}
-                        className="h-full w-full object-cover"
+                        fill
+                        className="object-cover"
                       />
                     ) : (
                       <Code className="h-12 w-12 text-black opacity-50" />

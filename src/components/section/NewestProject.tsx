@@ -30,13 +30,14 @@ const NewestProjects = ({ darkMode }: NewestProjectsProps) => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div
-                className={`mb-4 h-40 w-full overflow-hidden border-4 border-black transition-all duration-300 group-hover:scale-105`}
+                className={`relative mb-4 h-40 w-full overflow-hidden border-4 border-black transition-all duration-300 group-hover:scale-105`}
               >
                 {project.image ? (
                   <Image
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 ) : (
                   <div className={`${project.color} h-full w-full`} />

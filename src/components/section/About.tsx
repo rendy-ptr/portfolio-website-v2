@@ -23,11 +23,11 @@ const About = ({ darkMode }: AboutProps) => {
             }`}
           >
             <p className="mb-6 text-xl leading-relaxed">
-              Saya adalah mahasiswa semester akhir jurusan Teknik Informatika
-              dengan pengalaman magang selama 3 bulan sebagai programmer di
-              industri. Selama masa magang, saya terbiasa bekerja dalam tim
-              pengembang dan mengerjakan berbagai tantangan teknis, yang semakin
-              memperkuat minat saya di dunia teknologi.
+              Saya adalah fresh graduate jurusan Teknik Informatika dengan
+              pengalaman magang selama 3 bulan sebagai programmer di industri.
+              Selama masa magang, saya terbiasa bekerja dalam tim pengembang dan
+              mengerjakan berbagai tantangan teknis, yang semakin memperkuat
+              minat saya di dunia teknologi.
             </p>
             <p className="mb-6 text-xl leading-relaxed">
               Saya memiliki ketertarikan yang kuat pada bidang fullstack

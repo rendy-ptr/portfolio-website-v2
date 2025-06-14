@@ -70,9 +70,10 @@ const Hero = ({ darkMode }: HeroPropTypes) => {
                 </span>
               </h3>
               <p className="mb-8 max-w-2xl text-xl leading-relaxed text-black">
-                Passionate full-stack developer yang suka membuat aplikasi web
-                yang keren dan fungsional. Mari berkolaborasi untuk mewujudkan
-                ide digital Anda!
+                Saya fresh graduate Teknik Informatika yang suka ngulik dan
+                membangun aplikasi web. Buat saya, coding bukan cuma kerjaan,
+                tapi cara untuk menuangkan ide jadi sesuatu yang nyata. Yuk,
+                bareng-bareng bikin proyek digital yang impactful!
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button
