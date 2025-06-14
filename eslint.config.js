@@ -3,13 +3,16 @@ import pluginJs from '@eslint/js';
 import pluginTs from 'typescript-eslint';
 import pluginPrettier from 'eslint-plugin-prettier';
 import configPrettier from 'eslint-config-prettier';
-// import pluginJest from 'eslint-plugin-jest';
+
 import pluginJson from 'eslint-plugin-json';
 
 // Opsional: Tambahkan plugin berikut untuk proyek React
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
+
+// Opsional: Tambahkan plugin berikut untuk proyek testing dengan Jest
+// import pluginJest from 'eslint-plugin-jest';
 
 export default [
   {
@@ -32,6 +35,8 @@ export default [
       globals: {
         ...globals.node, // Untuk proyek Node.js
         ...globals.browser, // Untuk proyek browser
+
+
         // Opsional: Aktifkan untuk Jest testing
         // ...globals.jest, // Untuk testing dengan Jest
       },
@@ -45,8 +50,12 @@ export default [
     plugins: {
       '@typescript-eslint': pluginTs.plugin,
       prettier: pluginPrettier,
+
+
       // Opsional: Aktifkan untuk Jest testing
       // jest: pluginJest,
+
+
       // Opsional: Aktifkan untuk proyek React
       react: pluginReact,
       'react-hooks': pluginReactHooks,
@@ -56,8 +65,12 @@ export default [
       // Aturan dasar ESLint dan TypeScript
       ...pluginJs.configs.recommended.rules,
       ...pluginTs.configs.recommended.rules,
+
+
       // Opsional: Aktifkan untuk Jest testing
       // ...pluginJest.configs.recommended.rules,
+
+
       ...configPrettier.rules,
       // Opsional: Aturan React (aktifkan jika menggunakan React)
       ...pluginReact.configs.recommended.rules,
@@ -77,9 +90,13 @@ export default [
       // Aturan tambahan untuk maintainability
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       eqeqeq: ['error', 'always'],
+
+
       // Aturan untuk testing
       // 'jest/no-disabled-tests': 'warn',
       // 'jest/no-focused-tests': 'error',
+
+
       // Aturan untuk penamaan
       '@typescript-eslint/naming-convention': [
         'error',
