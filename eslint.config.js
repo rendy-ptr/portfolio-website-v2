@@ -47,6 +47,13 @@ export default [
         ecmaVersion: 'latest', // Dukung fitur JavaScript terbaru
       },
     },
+    // Opsional: Aktifkan untuk React
+    // parserOptions: {
+    settings: {
+      react: {
+        version: 'detect', // Deteksi versi React secara otomatis
+      },
+    },
     plugins: {
       '@typescript-eslint': pluginTs.plugin,
       prettier: pluginPrettier,
@@ -98,18 +105,18 @@ export default [
 
 
       // Aturan untuk penamaan
-      '@typescript-eslint/naming-convention': [
-        'error',
-        {
-          selector: 'variable',
-          format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-          leadingUnderscore: 'allow',
-        },
-        {
-          selector: 'function',
-          format: ['camelCase', 'PascalCase'],
-        },
-      ],
+      // '@typescript-eslint/naming-convention': [
+      //   'error',
+      //   {
+      //     selector: 'variable',
+      //     format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+      //     leadingUnderscore: 'allow',
+      //   },
+      //   {
+      //     selector: 'function',
+      //     format: ['camelCase', 'PascalCase'],
+      //   },
+      // ],
       // Aturan untuk keamanan
       'no-eval': 'error',
       // Aturan untuk performa
