@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website V2
 
-## Getting Started
+## 📋 Deskripsi
 
-First, run the development server:
+Portfolio Website V2 adalah situs web portofolio pribadi yang dibangun untuk menampilkan proyek, keterampilan, dan informasi kontak secara profesional. Proyek ini menggunakan teknologi web modern untuk memberikan pengalaman pengguna yang responsif dan interaktif.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🤖 Demo URL
+- https://www.rndyptr.my.id/
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Fitur
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Formulir Kontak dengan Pengiriman Email Otomatis: Memungkinkan pengunjung mengirim pesan langsung ke email Anda melalui formulir situs.
+- Dark Mode: Mendukung mode gelap untuk kenyamanan visual pengguna di kondisi cahaya rendah.
+- Desain Responsif: Tampilan dioptimalkan untuk perangkat desktop dan mobile.
+- Chatbot AI Interaktif: Membantu pengunjung dengan menjawab pertanyaan seputar website, proyek, dan informasi pribadi secara real-time.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Teknologi yang Digunakan
 
-## Learn More
+- Next.js
+- Typescript
+- Tailwind Css
+- Node.js
+- Shadcn UI
 
-To learn more about Next.js, take a look at the following resources:
+## 📋 Persyaratan Sistem
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js (versi 20 atau lebih tinggi)
+- npm (node package manager)
+- API key untuk layanan seperti Groq API/Gemini (untuk chatbot)
+- API key untuk layanan pengiriman email (sendgrid/mailjet/brevo) dan lain lain
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Instalasi
 
-## Deploy on Vercel
+1. **Kloning Repository**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git clone https://github.com/rendy-ptr/portfolio-website-v2.git
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Buka Direktori**
+
+   ```bash
+   cd portfolio-website-v2
+   ```
+
+3. **Install dependensi**
+
+   ```bash
+   npm install
+   ```
+
+4. **Konfigurasi variabel lingkungan**
+
+   - Buat file `env.local` atau jalankan perintah:
+      ```
+      cp env.example env.local
+     ```
+   - Kemudian sesuaikan Konfigurasi :
+     ```
+        GROQ_API_KEY=ENTER_YOUR_GROQ_API_KEY_HERE
+        EMAIL_HOST=ENTER_YOUR_EMAIL_HOST_HERE
+        EMAIL_PORT=ENTER_YOUR_EMAIL_PORT_HERE
+        EMAIL_SECURE=ENTER_YOUR_EMAIL_SECURE_HERE
+        EMAIL_USER=ENTER_YOUR_EMAIL_USER_HERE
+        EMAIL_PASS=ENTER_YOUR_EMAIL_PASS_HERE
+        EMAIL_FROM="ENTER_YOUR_EMAIL_FROM_HERE"
+        EMAIL_TO=ENTER_YOUR_EMAIL_TO_HERE
+     ```
+
+5. **Jalankan aplikasi**
+     ```bash
+      npm run dev
+     ```
+
+6. **Build untuk Production (opsional)**
+     ```bash
+      npm run build
+     ```
+
+## 📝 Cara Penggunaan
+
+1. Buka situs `http://localhost:3000` di browser setelah menjalankan perintah `npm run dev`
+2. Navigasi melalui bagian Beranda, Portofolio, Tentang, dan Kontak.
+3. Gunakan Chatbot AI untuk bertanya tentang website, proyek, atau informasi pribadi seperti keahlian dan kontak.
+4. Isi formulir kontak untuk mengirim pesan langsung ke email.
+5. Aktifkan Dark Mode melalui tombol atau pengaturan untuk pengalaman visual yang lebih nyaman.
+6. Sesuaikan konten di `src/` untuk memperbarui informasi pribadi, proyek, atau gaya situs.
+
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
