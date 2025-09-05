@@ -25,19 +25,13 @@ export const newestProjects = [
     color: 'bg-cyan-400',
   },
   {
-    title: 'QR Generator',
+    title: 'Watch Party',
     description:
-      'Website untuk membuat dan membagikan QR Code dengan fitur keamanan password.',
-    tech: [
-      'React.JS',
-      'TypeScript',
-      'Tailwind CSS',
-      'Bun.JS',
-      'Hono.JS',
-      'PostgreSQL',
-    ],
-    image: '/projects/web-qrku.png',
-    github: 'https://github.com/rendy-ptr/qrku',
-    color: 'bg-yellow-400',
+      'Aplikasi web untuk menonton video bersama secara real-time dengan teman.',
+    tech: ['Next.JS', 'TypeScript', 'Tailwind CSS', 'Node.JS', 'Firebase'],
+    image: '/projects/watch-party.png',
+    github: ' https://github.com/rendy-ptr/watch-party-v1',
+    color: 'bg-teal-400',
+    category: 'Full Stack',
   },
 ];

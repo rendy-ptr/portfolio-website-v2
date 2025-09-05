@@ -64,7 +64,7 @@ const Contact = ({ darkMode }: ContactProps) => {
 
   return (
     <section id="contact" className="relative px-4 py-16">
-      <div className="relative z-10 mx-auto max-w-4xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
         <h2
           className={`mb-8 text-5xl font-black transition-all duration-500 hover:scale-105 ${
             darkMode ? 'text-yellow-400' : 'text-red-600'

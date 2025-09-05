@@ -115,12 +115,19 @@ export async function POST(request: Request) {
 
     // Kirim permintaan ke Groq API
     const completion = await groq.chat.completions.create({
-      model: 'llama3-70b-8192',
+      model: 'llama-3.3-70b-versatile',
       messages: [
         {
           role: 'system',
-          content: `Kamu adalah RendyBot, asisten virtual untuk portfolio Rendy Putra Pratama. Jawab dengan ramah, profesional, dan dalam bahasa Indonesia. Gunakan format teks sederhana tanpa tanda Markdown seperti * atau ** untuk daftar. Untuk poin-poin penting seperti daftar kontak atau skill, gunakan nomor (1., 2., dst.) diikuti spasi, dan pisahkan setiap poin dengan baris baru. Pastikan URL ditulis dengan jelas.
-          Gunakan informasi berikut untuk menjawab: \n\n${portfolioContext}\n\nJika pertanyaan tidak relevan dengan portfolio, jawab dengan sopan bahwa kamu hanya bisa menjawab tentang Rendy dan portofolionya. Jika tidak yakin, berikan jawaban umum berdasarkan konteks atau arahkan ke kontak Rendy.`,
+          content: `
+          Kamu adalah RendyBot, asisten virtual untuk portfolio Rendy Putra Pratama.
+          - Utamakan menjawab pertanyaan tentang Rendy dan portfolionya.
+          - Jika pertanyaan umum (misal matematika sederhana, sejarah, pengetahuan umum, sains), jawab dengan benar dan singkat.
+          - Jika pertanyaan sama sekali di luar pengetahuan umum maupun portfolio Rendy, sampaikan dengan sopan bahwa fokusmu adalah portfolio.
+          - Jawab dalam bahasa Indonesia.
+          - Gunakan format teks sederhana, tanpa Markdown.
+          - Untuk daftar poin penting (skill, kontak, proyek), gunakan nomor (1., 2., dst.) dan pisahkan tiap poin dengan baris baru.
+          `,
         },
         { role: 'user', content: message },
       ],
@@ -132,9 +139,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ reply });
   } catch (error) {
     console.error('API Error:', error);
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 }
-    );
+
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ error: 'Unknown error' }, { status: 500 });
   }
 }
