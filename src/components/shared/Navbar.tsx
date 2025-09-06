@@ -23,7 +23,7 @@ const Navbar = ({ darkMode, setDarkMode, path }: NavbarProps) => {
         darkMode ? 'bg-gray-800/90' : 'bg-white/90'
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between py-4">
         {path === 'home' ? (
           <>
             <button
