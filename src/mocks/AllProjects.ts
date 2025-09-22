@@ -2,13 +2,23 @@ import type { AllProjectsType } from '../types/allprojects';
 
 export const allProjects: AllProjectsType = [
   {
+    title: 'Lumina',
+    description:
+      'Lumina adalah blog platform untuk menulis, membaca, dan berbagi cerita atau ide bersama pengguna lain.',
+    tech: ['PHP', 'Laravel', 'TypeScript', 'Tailwind CSS', 'Node.JS', 'MySQL'],
+    image: '/projects/Lumina.png',
+    github: 'https://github.com/rendy-ptr/Lumina',
+    color: 'bg-cyan-400',
+    category: 'Full Stack',
+  },
+  {
     title: 'Portfolio Website V2',
     description:
       'Portfolio website modern dengan desain futuristik dan interaktif.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Node.JS'],
     image: '/projects/portfolio-website-v2.png',
     github: 'https://github.com/rendy-ptr/portfolio-website-v2',
-    color: 'bg-pink-400',
+    color: 'bg-yellow-400',
     category: 'Full Stack',
   },
   {
@@ -25,7 +35,7 @@ export const allProjects: AllProjectsType = [
     ],
     image: '/projects/pos-coffee-shop.png',
     github: 'https://github.com/rendy-ptr/pos-coffee-frontend',
-    color: 'bg-cyan-400',
+    color: 'bg-purple-400',
     category: 'Full Stack',
   },
   {

@@ -5,7 +5,7 @@ export type ProjectType = {
   image: string;
   github: string;
   color: string;
-  category: string;
+  category: ProjectCategoryTypes;
 };
 
 export type AllProjectsType = ProjectType[];
