@@ -83,7 +83,7 @@ const Hero = ({ darkMode }: HeroPropTypes) => {
                   <Mail className="mr-2 h-5 w-5" />
                   KONTAK SAYA
                 </Button>
-                <a href="/CV-RENDY.PDF" download>
+                <a href="/RendyPutra_Cv_2025.pdf" download>
                   <Button className="btn-press border-4 border-black bg-yellow-400 font-bold text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 hover:scale-105 hover:bg-yellow-300 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
                     <Download className="mr-2 h-5 w-5" />
                     DOWNLOAD CV
